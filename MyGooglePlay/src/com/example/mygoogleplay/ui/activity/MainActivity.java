@@ -1,4 +1,9 @@
-package com.example.mygoogleplay;
+package com.example.mygoogleplay.ui.activity;
+
+import com.example.mygoogleplay.R;
+import com.example.mygoogleplay.R.id;
+import com.example.mygoogleplay.R.layout;
+import com.example.mygoogleplay.R.menu;
 
 import android.app.Activity;
 import android.os.Bundle;
