@@ -33,6 +33,9 @@ public class LoadingPager extends FrameLayout {
 		initView();
 	}
 
+	/**
+	 * 初始化布局
+	 */
 	private void initView() {
 		if (mLoadingPage == null) {
 			mLoadingPage = UIUtils.inflate(R.layout.page_loading);
@@ -46,5 +49,21 @@ public class LoadingPager extends FrameLayout {
 			mEmptyPage = UIUtils.inflate(R.layout.page_empty);
 			addView(mEmptyPage);
 		}
+		showRightPage();
+	}
+
+	/**
+	 * 根据状态显示不同的布局
+	 */
+	private void showRightPage() {
+		mLoadingPage
+				.setVisibility((mCurrentState == STATE_LOAD_UNDO || mCurrentState == STATE_LOAD_LOADING) ? View.VISIBLE
+						: View.GONE);
+		mEmptyPage
+				.setVisibility((mCurrentState == STATE_LOAD_EMPTY) ? View.VISIBLE
+						: View.GONE);
+		mErrorPage
+				.setVisibility((mCurrentState == STATE_LOAD_ERROR) ? View.VISIBLE
+						: View.GONE);
 	}
 }
