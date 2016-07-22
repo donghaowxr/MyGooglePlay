@@ -16,6 +16,9 @@ public final class R {
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
     }
+    public static final class array {
+        public static final int tab_names=0x7f0c0000;
+    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -794,13 +797,15 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f050002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f060005;
+        public static final int abc_search_url_text_holo=0x7f060007;
         public static final int abc_search_url_text_normal=0x7f060000;
         public static final int abc_search_url_text_pressed=0x7f060002;
         public static final int abc_search_url_text_selected=0x7f060001;
         public static final int bg_tab_normal=0x7f060004;
         public static final int bg_tab_pressed=0x7f060003;
-        public static final int tab_text_color=0x7f060006;
+        public static final int tab_text_color=0x7f060008;
+        public static final int tab_text_color_normal=0x7f060006;
+        public static final int tab_text_color_selected=0x7f060005;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1055,7 +1060,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
-        public static final int action_settings=0x7f09003c;
+        public static final int action_settings=0x7f09003e;
         public static final int activity_chooser_view_content=0x7f090025;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
@@ -1082,6 +1087,7 @@ containing a value of this type.
         public static final int normal=0x7f090007;
         public static final int progress_circular=0x7f090004;
         public static final int progress_horizontal=0x7f090005;
+        public static final int pt_main=0x7f09003c;
         public static final int radio=0x7f09002f;
         public static final int search_badge=0x7f090032;
         public static final int search_bar=0x7f090031;
@@ -1104,6 +1110,7 @@ containing a value of this type.
         public static final int top_action_bar=0x7f090020;
         public static final int up=0x7f090021;
         public static final int useLogo=0x7f09000e;
+        public static final int vp_main=0x7f09003d;
         public static final int withText=0x7f090013;
     }
     public static final class integer {
@@ -1159,7 +1166,7 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f030018;
     }
     public static final class menu {
-        public static final int main=0x7f0c0000;
+        public static final int main=0x7f0d0000;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

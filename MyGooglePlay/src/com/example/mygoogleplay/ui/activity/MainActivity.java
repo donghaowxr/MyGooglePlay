@@ -1,40 +1,54 @@
 package com.example.mygoogleplay.ui.activity;
 
 import com.example.mygoogleplay.R;
-import com.example.mygoogleplay.R.id;
-import com.example.mygoogleplay.R.layout;
-import com.example.mygoogleplay.R.menu;
-
-import android.app.Activity;
+import com.example.mygoogleplay.fragment.BaseFragment;
+import com.example.mygoogleplay.fragment.FragmentFactory;
+import com.example.mygoogleplay.ui.view.PagerTab;
+import com.example.mygoogleplay.utils.UIUtils;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 
+public class MainActivity extends BaseActivity {
 
-public class MainActivity extends Activity {
+	private PagerTab ptMain;
+	private ViewPager vpMain;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		ptMain = (PagerTab) findViewById(R.id.pt_main);
+		vpMain = (ViewPager) findViewById(R.id.vp_main);
+		vpMain.setAdapter(new MyAdpter(getSupportFragmentManager()));
+		ptMain.setViewPager(vpMain);
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+	class MyAdpter extends FragmentPagerAdapter {
+		private String[] mTabNameArray;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+		public MyAdpter(FragmentManager fm) {
+			super(fm);
+			mTabNameArray = UIUtils.getStringArray(R.array.tab_names);
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return mTabNameArray[position];
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			BaseFragment fragment=FragmentFactory.createFragment(position);
+			return fragment;
+		}
+
+		@Override
+		public int getCount() {
+			return mTabNameArray.length;
+		}
+
+	}
 }

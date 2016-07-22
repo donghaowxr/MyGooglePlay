@@ -4,6 +4,7 @@ int anim abc_slide_in_bottom 0x7f040002
 int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
+int array tab_names 0x7f0c0000
 int attr actionBarDivider 0x7f01000b
 int attr actionBarItemBackground 0x7f01000c
 int attr actionBarSize 0x7f01000a
@@ -116,13 +117,15 @@ int bool abc_config_actionMenuItemAllCaps 0x7f050005
 int bool abc_config_allowActionMenuItemTextWithIcon 0x7f050004
 int bool abc_config_showMenuShortcutsWhenKeyboardPresent 0x7f050003
 int bool abc_split_action_bar_is_narrow 0x7f050002
-int color abc_search_url_text_holo 0x7f060005
+int color abc_search_url_text_holo 0x7f060007
 int color abc_search_url_text_normal 0x7f060000
 int color abc_search_url_text_pressed 0x7f060002
 int color abc_search_url_text_selected 0x7f060001
 int color bg_tab_normal 0x7f060004
 int color bg_tab_pressed 0x7f060003
-int color tab_text_color 0x7f060006
+int color tab_text_color 0x7f060008
+int color tab_text_color_normal 0x7f060006
+int color tab_text_color_selected 0x7f060005
 int dimen abc_action_bar_default_height 0x7f070002
 int dimen abc_action_bar_icon_vertical_padding 0x7f070003
 int dimen abc_action_bar_progress_bar_size 0x7f07000a
@@ -298,7 +301,7 @@ int id action_context_bar 0x7f09001d
 int id action_menu_divider 0x7f090002
 int id action_menu_presenter 0x7f090003
 int id action_mode_close_button 0x7f090024
-int id action_settings 0x7f09003c
+int id action_settings 0x7f09003e
 int id activity_chooser_view_content 0x7f090025
 int id always 0x7f09000f
 int id beginning 0x7f090016
@@ -325,6 +328,7 @@ int id none 0x7f090019
 int id normal 0x7f090007
 int id progress_circular 0x7f090004
 int id progress_horizontal 0x7f090005
+int id pt_main 0x7f09003c
 int id radio 0x7f09002f
 int id search_badge 0x7f090032
 int id search_bar 0x7f090031
@@ -347,6 +351,7 @@ int id title 0x7f09002b
 int id top_action_bar 0x7f090020
 int id up 0x7f090021
 int id useLogo 0x7f09000e
+int id vp_main 0x7f09003d
 int id withText 0x7f090013
 int integer abc_max_action_buttons 0x7f080000
 int layout abc_action_bar_decor 0x7f030000
@@ -374,7 +379,7 @@ int layout abc_search_dropdown_item_icons_2line 0x7f030015
 int layout abc_search_view 0x7f030016
 int layout activity_main 0x7f030017
 int layout support_simple_spinner_dropdown_item 0x7f030018
-int menu main 0x7f0c0000
+int menu main 0x7f0d0000
 int string abc_action_bar_home_description 0x7f0a0001
 int string abc_action_bar_up_description 0x7f0a0002
 int string abc_action_menu_overflow_description 0x7f0a0003
