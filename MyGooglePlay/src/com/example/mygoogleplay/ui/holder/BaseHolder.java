@@ -10,6 +10,10 @@ public abstract class BaseHolder<T> {
 		mRootView = view;
 		mRootView.setTag(this);
 	}
+	/**
+	 * 获取rootview布局对象
+	 * @return
+	 */
 	public View getRootView(){
 		return mRootView;
 	}

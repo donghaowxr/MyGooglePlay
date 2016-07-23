@@ -3,6 +3,7 @@ package com.example.mygoogleplay.ui.adapter;
 import java.util.ArrayList;
 
 import com.example.mygoogleplay.ui.holder.BaseHolder;
+import com.example.mygoogleplay.ui.holder.MoreHolder;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,13 +61,24 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		BaseHolder holder;
 		if (convertView == null) {
-			holder = getHolder();
+			if (getItemViewType(position)==TYPE_MORE) {
+				holder=new MoreHolder(hanMore());
+			}else {
+				holder = getHolder();
+			}
 		} else {
 			holder = (BaseHolder) convertView.getTag();
 		}
-		holder.setData(getItem(position));
+		if (getItemViewType(position)!=TYPE_MORE) {
+			holder.setData(getItem(position));
+		}else {
+			//加载更多布局
+		}
 		return holder.getRootView();
 	}
 
 	public abstract BaseHolder<T> getHolder();
+	public boolean hanMore(){
+		return true;
+	}
 }
