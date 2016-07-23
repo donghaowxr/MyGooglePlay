@@ -8,11 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		LoadingPager pager = new LoadingPager(UIUtils.getContext());
+		LoadingPager pager = new LoadingPager(UIUtils.getContext()) {
+			@Override
+			public View OnCreateSuccessView() {
+				return BaseFragment.this.OnCreateSuccessView();
+			}
+		};
 		return pager;
 	}
+
+	public abstract View OnCreateSuccessView();
 }

@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
-public class LoadingPager extends FrameLayout {
+public abstract class LoadingPager extends FrameLayout {
 	private static final int STATE_LOAD_UNDO = 1;
 	private static final int STATE_LOAD_LOADING = 2;
 	private static final int STATE_LOAD_ERROR = 3;
@@ -17,6 +17,7 @@ public class LoadingPager extends FrameLayout {
 	private View mLoadingPage;
 	private View mErrorPage;
 	private View mEmptyPage;
+	private View mSuccessPage;
 
 	public LoadingPager(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -65,5 +66,11 @@ public class LoadingPager extends FrameLayout {
 		mErrorPage
 				.setVisibility((mCurrentState == STATE_LOAD_ERROR) ? View.VISIBLE
 						: View.GONE);
+
+		if (mSuccessPage == null && mCurrentState == STATE_LOAD_SUCCESS) {
+			mSuccessPage = OnCreateSuccessView();
+		}
 	}
+
+	public abstract View OnCreateSuccessView();
 }
