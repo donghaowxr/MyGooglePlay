@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import com.example.mygoogleplay.ui.holder.BaseHolder;
 import com.example.mygoogleplay.ui.holder.MoreHolder;
+import com.example.mygoogleplay.utils.UIUtils;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
 	private ArrayList<T> data;
@@ -61,24 +63,72 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		BaseHolder holder;
 		if (convertView == null) {
-			if (getItemViewType(position)==TYPE_MORE) {
-				holder=new MoreHolder(hanMore());
-			}else {
+			if (getItemViewType(position) == TYPE_MORE) {
+				holder = new MoreHolder(hanMore());
+			} else {
 				holder = getHolder();
 			}
 		} else {
 			holder = (BaseHolder) convertView.getTag();
 		}
-		if (getItemViewType(position)!=TYPE_MORE) {
+		if (getItemViewType(position) != TYPE_MORE) {
 			holder.setData(getItem(position));
-		}else {
-			//加载更多布局
+		} else {
+			// 加载更多布局
+			MoreHolder moreHolder=(MoreHolder) holder;
+			if (moreHolder.getData()==MoreHolder.STATE_LOAD_MORE) {
+				loadMore(moreHolder);
+			}
 		}
 		return holder.getRootView();
 	}
 
+	// 是否正在进行加载更多操作
+	private boolean isLoadMore = false;
+
+	/**
+	 * 加载更多数据处理
+	 */
+	private void loadMore(final MoreHolder moreHolder) {
+		// 只有不在加载更多操作时才能进行加载更多操作
+		if (isLoadMore == false) {
+			isLoadMore = true;
+			new Thread() {
+				@Override
+				public void run() {
+					final ArrayList<T> moreData = onLoadMore();
+					UIUtils.runOnUIThread(new Runnable() {
+						@Override
+						public void run() {
+							if (moreData == null) {
+								moreHolder.setData(MoreHolder.STATE_LOAD_ERROR);
+							} else {
+								if (moreData.size() < 20) {
+									moreHolder
+											.setData(MoreHolder.STATE_LOAD_NONE);
+									Toast.makeText(UIUtils.getContext(),
+											"没有更多数据了...", Toast.LENGTH_SHORT)
+											.show();
+								} else {
+									moreHolder
+											.setData(MoreHolder.STATE_LOAD_MORE);
+								}
+								data.addAll(moreData);
+								MyBaseAdapter.this.notifyDataSetChanged();
+							}
+							isLoadMore = false;
+						}
+					});
+				}
+			}.start();
+		}
+	}
+
 	public abstract BaseHolder<T> getHolder();
-	public boolean hanMore(){
+
+	public abstract ArrayList<T> onLoadMore();
+
+	public boolean hanMore() {
 		return true;
 	}
 }
