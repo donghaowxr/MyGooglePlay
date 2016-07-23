@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 public class MainActivity extends BaseActivity {
 
@@ -24,6 +25,26 @@ public class MainActivity extends BaseActivity {
 		vpMain = (ViewPager) findViewById(R.id.vp_main);
 		vpMain.setAdapter(new MyAdpter(getSupportFragmentManager()));
 		ptMain.setViewPager(vpMain);
+		ptMain.setOnPageChangeListener(new OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int position) {
+				BaseFragment fragment = FragmentFactory
+						.createFragment(position);
+				fragment.loadData();
+			}
+
+			@Override
+			public void onPageScrolled(int position, float positionOffset,
+					int positionOffsetPixels) {
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int state) {
+
+			}
+		});
 	}
 
 	class MyAdpter extends FragmentPagerAdapter {
@@ -41,7 +62,7 @@ public class MainActivity extends BaseActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			BaseFragment fragment=FragmentFactory.createFragment(position);
+			BaseFragment fragment = FragmentFactory.createFragment(position);
 			return fragment;
 		}
 

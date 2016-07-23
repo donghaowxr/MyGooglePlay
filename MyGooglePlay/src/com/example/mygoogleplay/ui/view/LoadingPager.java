@@ -69,8 +69,62 @@ public abstract class LoadingPager extends FrameLayout {
 
 		if (mSuccessPage == null && mCurrentState == STATE_LOAD_SUCCESS) {
 			mSuccessPage = OnCreateSuccessView();
+			if (mSuccessPage != null) {
+				addView(mSuccessPage);
+			}
+		}
+		if (mSuccessPage != null) {
+			mSuccessPage
+					.setVisibility((mCurrentState == STATE_LOAD_SUCCESS) ? View.VISIBLE
+							: View.GONE);
+		}
+	}
+
+	/**
+	 * 开始加载页面数据
+	 */
+	public void loadData() {
+		new Thread() {
+			@Override
+			public void run() {
+				if (mCurrentState != STATE_LOAD_LOADING) {
+					mCurrentState = STATE_LOAD_LOADING;
+					final ResultState resultState = OnLoad();
+					UIUtils.runOnUIThread(new Runnable() {
+						@Override
+						public void run() {
+							if (resultState != null) {
+								mCurrentState = resultState.getState();
+								showRightPage();
+							}
+						}
+					});
+				}
+			}
+		}.start();
+	}
+
+	/**
+	 * 创建加载状态枚举
+	 * 
+	 * @author donghao
+	 * 
+	 */
+	public enum ResultState {
+		STATE_SUCCESS(STATE_LOAD_SUCCESS), STATE_EMPTY(STATE_LOAD_EMPTY), STATE_ERROR(
+				STATE_LOAD_ERROR);
+		private int state;
+
+		private ResultState(int state) {
+			this.state = state;
+		}
+
+		public int getState() {
+			return state;
 		}
 	}
 
 	public abstract View OnCreateSuccessView();
+
+	public abstract ResultState OnLoad();
 }
