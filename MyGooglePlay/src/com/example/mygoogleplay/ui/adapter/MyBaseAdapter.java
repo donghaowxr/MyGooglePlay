@@ -2,11 +2,13 @@ package com.example.mygoogleplay.ui.adapter;
 
 import java.util.ArrayList;
 
+import com.example.mygoogleplay.ui.holder.BaseHolder;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-public class MyBaseAdapter<T> extends BaseAdapter {
+public abstract class MyBaseAdapter<T> extends BaseAdapter {
 	private ArrayList<T> data;
 
 	public MyBaseAdapter(ArrayList<T> data) {
@@ -30,7 +32,14 @@ public class MyBaseAdapter<T> extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		return null;
+		BaseHolder holder;
+		if (convertView==null) {
+			holder=getHolder();
+		}else {
+			holder=(BaseHolder) convertView.getTag();
+		}
+		holder.setData(getItem(position));
+		return holder.getRootView();
 	}
-
+	public abstract BaseHolder<T> getHolder();
 }
