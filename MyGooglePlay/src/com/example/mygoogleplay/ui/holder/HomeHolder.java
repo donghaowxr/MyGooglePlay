@@ -1,11 +1,12 @@
 package com.example.mygoogleplay.ui.holder;
 
 import com.example.mygoogleplay.R;
+import com.example.mygoogleplay.domain.AppInfo;
 import com.example.mygoogleplay.utils.UIUtils;
 import android.view.View;
 import android.widget.TextView;
 
-public class HomeHolder extends BaseHolder<String> {
+public class HomeHolder extends BaseHolder<AppInfo> {
 
 	private TextView tvShow;
 
@@ -17,8 +18,8 @@ public class HomeHolder extends BaseHolder<String> {
 	}
 
 	@Override
-	public void refreshView(String data) {
-		tvShow.setText(data);
+	public void refreshView(AppInfo data) {
+		tvShow.setText(data.name);
 	}
 
 }

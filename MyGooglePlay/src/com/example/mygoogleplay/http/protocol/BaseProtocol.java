@@ -14,14 +14,16 @@ import com.example.mygoogleplay.utils.StringUtils;
 import com.example.mygoogleplay.utils.UIUtils;
 
 public abstract class BaseProtocol<T> {
-	public void getData(int index) {
-		String result=getCache(index);
-		if (!StringUtils.isEmpty(result)) {//如果没有缓存或者缓存失效则请求网络
-			result= getDataFromServer(index);
+	public T getData(int index) {
+		String result = getCache(index);
+		if (StringUtils.isEmpty(result)) {// 如果没有缓存或者缓存失效则请求网络
+			result = getDataFromServer(index);
 		}
-		if (result!=null) {
-			parseData(result);
+		if (result != null) {
+			T data = parseData(result);
+			return data;
 		}
+		return null;
 	}
 
 	private String getDataFromServer(int index) {
@@ -40,10 +42,12 @@ public abstract class BaseProtocol<T> {
 	public abstract String getKey();// 获取网络请求关键字
 
 	public abstract String getParam();// 获取网络请求参数
+
 	public abstract T parseData(String result);
 
 	/**
 	 * 设置缓存
+	 * 
 	 * @param index
 	 * @param json
 	 */
@@ -63,25 +67,26 @@ public abstract class BaseProtocol<T> {
 			IOUtils.close(writer);
 		}
 	}
-	
+
 	/**
 	 * 获取缓存
+	 * 
 	 * @param index
 	 * @return
 	 */
 	private String getCache(int index) {
 		File cacheDir = UIUtils.getContext().getCacheDir();
 		File cacheFile = new File(cacheDir, "?index=" + index + getParam());
-		if (cacheFile.exists()) {//判断缓存是否存在
-			BufferedReader reader=null;
+		if (cacheFile.exists()) {// 判断缓存是否存在
+			BufferedReader reader = null;
 			try {
-				reader=new BufferedReader(new FileReader(cacheFile));
-				String deadLine=reader.readLine();
-				long deadTime=Long.parseLong(deadLine);
-				if (System.currentTimeMillis()<deadTime) {//当当前时间小于有效时间时。该缓存有效
-					StringBuffer sb=new StringBuffer();
+				reader = new BufferedReader(new FileReader(cacheFile));
+				String deadLine = reader.readLine();
+				long deadTime = Long.parseLong(deadLine);
+				if (System.currentTimeMillis() < deadTime) {// 当当前时间小于有效时间时。该缓存有效
+					StringBuffer sb = new StringBuffer();
 					String line;
-					while ((line=reader.readLine())!= null) {
+					while ((line = reader.readLine()) != null) {
 						sb.append(line);
 					}
 					return sb.toString();
@@ -90,7 +95,7 @@ public abstract class BaseProtocol<T> {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}finally{
+			} finally {
 				IOUtils.close(reader);
 			}
 		}

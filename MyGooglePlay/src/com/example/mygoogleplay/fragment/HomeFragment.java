@@ -2,6 +2,8 @@ package com.example.mygoogleplay.fragment;
 
 import java.util.ArrayList;
 
+import com.example.mygoogleplay.domain.AppInfo;
+import com.example.mygoogleplay.http.protocol.HomeProtocol;
 import com.example.mygoogleplay.ui.adapter.MyBaseAdapter;
 import com.example.mygoogleplay.ui.holder.BaseHolder;
 import com.example.mygoogleplay.ui.holder.HomeHolder;
@@ -14,32 +16,34 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class HomeFragment extends BaseFragment {
-	private ArrayList<String> homeArrayList = new ArrayList<String>();
 	private ListView listView;
+	private ArrayList<AppInfo> data;
 
 	@Override
 	public View OnCreateSuccessView() {
 		listView = new ListView(UIUtils.getContext());
-		listView.setAdapter(new HomeAdapter(homeArrayList));
+		listView.setAdapter(new HomeAdapter(data));
 		return listView;
 	}
 
 	@Override
 	public ResultState OnLoad() {
-		for (int i = 0; i < 50; i++) {
-			homeArrayList.add("这是homePager中的数据：" + i);
-		}
-		return ResultState.STATE_SUCCESS;
+		// for (int i = 0; i < 50; i++) {
+		// homeArrayList.add("这是homePager中的数据：" + i);
+		// }
+		HomeProtocol protocol = new HomeProtocol();
+		data = protocol.getData(0);
+		return check(data);
 	}
 
-	public class HomeAdapter extends MyBaseAdapter<String> {
+	public class HomeAdapter extends MyBaseAdapter<AppInfo> {
 
-		public HomeAdapter(ArrayList<String> data) {
+		public HomeAdapter(ArrayList<AppInfo> data) {
 			super(data);
 		}
 
 		@Override
-		public BaseHolder<String> getHolder() {
+		public BaseHolder<AppInfo> getHolder() {
 			HomeHolder holder = new HomeHolder();
 			return holder;
 		}
@@ -50,7 +54,7 @@ public class HomeFragment extends BaseFragment {
 		}
 
 		@Override
-		public ArrayList<String> onLoadMore() {
+		public ArrayList<AppInfo> onLoadMore() {
 			ArrayList<String> moreData = new ArrayList<String>();
 			for (int i = 0; i < 20; i++) {
 				moreData.add("更多数据：" + i);
