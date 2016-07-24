@@ -2,15 +2,12 @@ package com.example.mygoogleplay.fragment;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import com.example.mygoogleplay.http.protocol.RecommendProtocol;
 import com.example.mygoogleplay.ui.fly.ShakeListener;
 import com.example.mygoogleplay.ui.fly.ShakeListener.OnShakeListener;
 import com.example.mygoogleplay.ui.fly.StellarMap;
 import com.example.mygoogleplay.ui.view.LoadingPager.ResultState;
 import com.example.mygoogleplay.utils.UIUtils;
-
-import android.R.string;
 import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.View;
