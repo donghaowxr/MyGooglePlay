@@ -55,12 +55,9 @@ public class HomeFragment extends BaseFragment {
 
 		@Override
 		public ArrayList<AppInfo> onLoadMore() {
-			ArrayList<String> moreData = new ArrayList<String>();
-			for (int i = 0; i < 20; i++) {
-				moreData.add("更多数据：" + i);
-			}
-			SystemClock.sleep(2000);
-			return null;
+			HomeProtocol protocol=new HomeProtocol();
+			ArrayList<AppInfo>moreInfo=protocol.getData(getListSize());
+			return moreInfo;
 		}
 
 	}

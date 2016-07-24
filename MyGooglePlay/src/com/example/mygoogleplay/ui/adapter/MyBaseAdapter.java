@@ -75,8 +75,8 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 			holder.setData(getItem(position));
 		} else {
 			// 加载更多布局
-			MoreHolder moreHolder=(MoreHolder) holder;
-			if (moreHolder.getData()==MoreHolder.STATE_LOAD_MORE) {
+			MoreHolder moreHolder = (MoreHolder) holder;
+			if (moreHolder.getData() == MoreHolder.STATE_LOAD_MORE) {
 				loadMore(moreHolder);
 			}
 		}
@@ -130,5 +130,14 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
 	public boolean hanMore() {
 		return true;
+	}
+
+	/**
+	 * 获取当前集合大小
+	 * 
+	 * @return
+	 */
+	public int getListSize() {
+		return data.size();
 	}
 }
