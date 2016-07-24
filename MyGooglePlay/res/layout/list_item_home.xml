@@ -41,6 +41,7 @@
                 android:layout_below="@id/tv_name"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/iv_icon"
+                android:isIndicator="true"
                 android:progressDrawable="@drawable/custom_ratingbar"
                 android:rating="2" />
 

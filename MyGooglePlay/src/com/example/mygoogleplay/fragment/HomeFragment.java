@@ -7,6 +7,7 @@ import com.example.mygoogleplay.http.protocol.HomeProtocol;
 import com.example.mygoogleplay.ui.adapter.MyBaseAdapter;
 import com.example.mygoogleplay.ui.holder.BaseHolder;
 import com.example.mygoogleplay.ui.holder.HomeHolder;
+import com.example.mygoogleplay.ui.view.MyListView;
 import com.example.mygoogleplay.ui.view.LoadingPager.ResultState;
 import com.example.mygoogleplay.utils.UIUtils;
 
@@ -16,12 +17,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class HomeFragment extends BaseFragment {
-	private ListView listView;
+	private MyListView listView;
 	private ArrayList<AppInfo> data;
 
 	@Override
 	public View OnCreateSuccessView() {
-		listView = new ListView(UIUtils.getContext());
+		listView = new MyListView(UIUtils.getContext());
 		listView.setAdapter(new HomeAdapter(data));
 		return listView;
 	}
@@ -55,8 +56,8 @@ public class HomeFragment extends BaseFragment {
 
 		@Override
 		public ArrayList<AppInfo> onLoadMore() {
-			HomeProtocol protocol=new HomeProtocol();
-			ArrayList<AppInfo>moreInfo=protocol.getData(getListSize());
+			HomeProtocol protocol = new HomeProtocol();
+			ArrayList<AppInfo> moreInfo = protocol.getData(getListSize());
 			return moreInfo;
 		}
 
