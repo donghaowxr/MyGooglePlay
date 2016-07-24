@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
 	private ArrayList<T> data;
-	private static final int TYPE_NORMAL = 0;
-	private static final int TYPE_MORE = 1;
+	private static final int TYPE_NORMAL = 1;
+	private static final int TYPE_MORE = 0;
 
 	public MyBaseAdapter(ArrayList<T> data) {
 		this.data = data;
@@ -51,11 +51,11 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 		if (position == getCount() - 1) {
 			return TYPE_MORE;
 		} else {
-			return getInnerType();
+			return getInnerType(position);
 		}
 	}
 
-	public int getInnerType() {
+	public int getInnerType(int position) {
 		return TYPE_NORMAL;
 	}
 
