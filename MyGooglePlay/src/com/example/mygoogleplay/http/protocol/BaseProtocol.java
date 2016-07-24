@@ -53,7 +53,7 @@ public abstract class BaseProtocol<T> {
 	 */
 	private void setCache(int index, String json) {
 		File cacheDir = UIUtils.getContext().getCacheDir();
-		File cacheFile = new File(cacheDir, "?index=" + index + getParam());
+		File cacheFile = new File(cacheDir, getKey()+"?index=" + index + getParam());
 		FileWriter writer = null;
 		try {
 			writer = new FileWriter(cacheFile);

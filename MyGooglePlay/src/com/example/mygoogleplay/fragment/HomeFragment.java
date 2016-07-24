@@ -1,7 +1,6 @@
 package com.example.mygoogleplay.fragment;
 
 import java.util.ArrayList;
-
 import com.example.mygoogleplay.domain.AppInfo;
 import com.example.mygoogleplay.http.protocol.HomeProtocol;
 import com.example.mygoogleplay.ui.adapter.MyBaseAdapter;
@@ -10,11 +9,7 @@ import com.example.mygoogleplay.ui.holder.HomeHolder;
 import com.example.mygoogleplay.ui.view.MyListView;
 import com.example.mygoogleplay.ui.view.LoadingPager.ResultState;
 import com.example.mygoogleplay.utils.UIUtils;
-
-import android.os.SystemClock;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.TextView;
 
 public class HomeFragment extends BaseFragment {
 	private MyListView listView;
@@ -47,11 +42,6 @@ public class HomeFragment extends BaseFragment {
 		public BaseHolder<AppInfo> getHolder() {
 			HomeHolder holder = new HomeHolder();
 			return holder;
-		}
-
-		@Override
-		public boolean hanMore() {
-			return true;
 		}
 
 		@Override
