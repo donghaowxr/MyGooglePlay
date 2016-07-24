@@ -79,6 +79,7 @@ int attr progressBarPadding 0x7f010032
 int attr progressBarStyle 0x7f010030
 int attr prompt 0x7f01004d
 int attr queryHint 0x7f010057
+int attr ratio 0x7f01006a
 int attr searchDropdownBackground 0x7f010058
 int attr searchResultListItemHeight 0x7f010061
 int attr searchViewAutoCompleteTextView 0x7f010065
@@ -627,6 +628,8 @@ int styleable MenuView_android_itemTextAppearance 1
 int styleable MenuView_android_preserveIconSpacing 7
 int styleable MenuView_android_verticalDivider 3
 int styleable MenuView_android_windowAnimationStyle 0
+int[] styleable RadioLayout { 0x7f01006a }
+int styleable RadioLayout_ratio 0
 int[] styleable SearchView { 0x0101011f, 0x01010220, 0x01010264, 0x7f010056, 0x7f010057 }
 int styleable SearchView_android_imeOptions 2
 int styleable SearchView_android_inputType 1
