@@ -5,6 +5,7 @@ import com.example.mygoogleplay.utils.UIUtils;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 public abstract class LoadingPager extends FrameLayout {
@@ -44,6 +45,14 @@ public abstract class LoadingPager extends FrameLayout {
 		}
 		if (mErrorPage == null) {
 			mErrorPage = UIUtils.inflate(R.layout.page_error);
+			Button btnRefesh = (Button) mErrorPage
+					.findViewById(R.id.btn_refesh);
+			btnRefesh.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					loadData();
+				}
+			});
 			addView(mErrorPage);
 		}
 		if (mEmptyPage == null) {

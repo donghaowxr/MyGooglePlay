@@ -305,10 +305,11 @@ int id action_context_bar 0x7f09001d
 int id action_menu_divider 0x7f090002
 int id action_menu_presenter 0x7f090003
 int id action_mode_close_button 0x7f090024
-int id action_settings 0x7f090045
+int id action_settings 0x7f090046
 int id activity_chooser_view_content 0x7f090025
 int id always 0x7f09000f
 int id beginning 0x7f090016
+int id btn_refesh 0x7f090045
 int id checkbox 0x7f09002d
 int id collapseActionView 0x7f090010
 int id default_activity_button 0x7f090028
