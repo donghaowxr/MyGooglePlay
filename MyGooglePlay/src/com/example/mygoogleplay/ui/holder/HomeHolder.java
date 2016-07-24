@@ -13,13 +13,13 @@ public class HomeHolder extends BaseHolder<AppInfo> {
 	@Override
 	public View initView() {
 		View view = UIUtils.inflate(R.layout.list_item_home);
-		tvShow = (TextView) view.findViewById(R.id.tv_list_item);
+//		tvShow = (TextView) view.findViewById(R.id.tv_list_item);
 		return view;
 	}
 
 	@Override
 	public void refreshView(AppInfo data) {
-		tvShow.setText(data.name);
+//		tvShow.setText(data.name);
 	}
 
 }

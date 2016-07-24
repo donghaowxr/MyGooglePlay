@@ -1,12 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
-    
-	<TextView
-	    android:id="@+id/tv_list_item"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" 
-	    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/list_item_bg_selector"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_default" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_icon"
+                android:text="应用名称"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <RatingBar
+                android:id="@+id/rb_star"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_below="@id/tv_name"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/iv_icon"
+                android:progressDrawable="@drawable/custom_ratingbar"
+                android:rating="2" />
+
+            <TextView
+                android:id="@+id/tv_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rb_star"
+                android:layout_toRightOf="@id/iv_icon"
+                android:text="3.70MB"
+                android:textColor="#ccc"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_download" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="下载"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:background="#ccc" />
+
+        <TextView
+            android:id="@+id/tv_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:text="上课减肥 i 哦绛佛我就俄方将胜利大街佛违法 i 哦额结果"
+            android:textColor="#ccc"
+            android:textSize="16sp" />
+    </LinearLayout>
+
 </LinearLayout>
