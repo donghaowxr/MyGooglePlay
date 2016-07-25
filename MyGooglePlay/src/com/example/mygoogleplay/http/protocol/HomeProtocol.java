@@ -10,6 +10,8 @@ import com.example.mygoogleplay.domain.AppInfo;
 
 public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
 
+	private ArrayList<String> pictures;
+
 	@Override
 	public String getKey() {
 		return "home";
@@ -40,7 +42,7 @@ public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
 				appinfoList.add(info);
 			}
 			JSONArray jaPic = jo.getJSONArray("picture");
-			ArrayList<String> pictures = new ArrayList<String>();
+			pictures = new ArrayList<String>();
 			for (int i = 0; i < jaPic.length(); i++) {
 				String pic = jaPic.getString(i);
 				pictures.add(pic);
@@ -52,4 +54,7 @@ public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
 		return null;
 	}
 
+	public ArrayList<String> getPictureList() {
+		return pictures;
+	}
 }
