@@ -38,7 +38,7 @@ public class SubjectFragment extends BaseFragment {
 		}
 
 		@Override
-		public BaseHolder<SubjectInfo> getHolder() {
+		public BaseHolder<SubjectInfo> getHolder(int position) {
 			SubjectHolder holder = new SubjectHolder();
 			return holder;
 		}

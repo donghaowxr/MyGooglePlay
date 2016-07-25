@@ -6,6 +6,8 @@ import com.example.mygoogleplay.domain.CategoryInfo;
 import com.example.mygoogleplay.http.protocol.CategoryProtocol;
 import com.example.mygoogleplay.ui.adapter.MyBaseAdapter;
 import com.example.mygoogleplay.ui.holder.BaseHolder;
+import com.example.mygoogleplay.ui.holder.CategoryHolder;
+import com.example.mygoogleplay.ui.holder.TitleHolder;
 import com.example.mygoogleplay.ui.view.MyListView;
 import com.example.mygoogleplay.ui.view.LoadingPager.ResultState;
 import com.example.mygoogleplay.utils.UIUtils;
@@ -19,6 +21,7 @@ public class CategoryFragment extends BaseFragment {
 	@Override
 	public View OnCreateSuccessView() {
 		MyListView listView = new MyListView(UIUtils.getContext());
+		listView.setAdapter(new CategoryAdapter(data));
 		return listView;
 	}
 
@@ -36,8 +39,13 @@ public class CategoryFragment extends BaseFragment {
 		}
 
 		@Override
-		public BaseHolder<CategoryInfo> getHolder() {
-			return null;
+		public BaseHolder<CategoryInfo> getHolder(int position) {
+			CategoryInfo info = data.get(position);
+			if (info.isTitle) {
+				return new TitleHolder();
+			} else {
+				return new CategoryHolder();
+			}
 		}
 
 		@Override
@@ -55,7 +63,7 @@ public class CategoryFragment extends BaseFragment {
 			CategoryInfo info = data.get(position);
 			if (info.isTitle) {
 				// 标题类型
-				return super.getInnerType(position) + 1;//在normal的基础上+1,确保normal的类型为1
+				return super.getInnerType(position) + 1;// 在normal的基础上+1,确保normal的类型为1
 			} else {
 				// 普通类型
 				return super.getInnerType(position);

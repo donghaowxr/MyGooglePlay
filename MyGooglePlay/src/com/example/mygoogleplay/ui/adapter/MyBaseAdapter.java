@@ -66,7 +66,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 			if (getItemViewType(position) == TYPE_MORE) {
 				holder = new MoreHolder(hanMore());
 			} else {
-				holder = getHolder();
+				holder = getHolder(position);
 			}
 		} else {
 			holder = (BaseHolder) convertView.getTag();
@@ -124,7 +124,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 		}
 	}
 
-	public abstract BaseHolder<T> getHolder();
+	public abstract BaseHolder<T> getHolder(int position);
 
 	public abstract ArrayList<T> onLoadMore();
 
